@@ -61,8 +61,8 @@ const InputButton = React.forwardRef<HTMLDivElement, InputButtonProps>(
         <div
           ref={ref}
           className={cn(
-            'relative w-fit flex items-center justify-center h-10',
-            (showInput || localShowInput) && 'w-full max-w-[400px]',
+            'relative w-fit flex items-center justify-center h-12',
+            (showInput || localShowInput) && 'w-full max-w-[500px]',
             className,
           )}
           {...props}

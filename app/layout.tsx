@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { StarsBackground } from "@/components/animate-ui/stars-background";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import Providers from "@/components/providers";
+import { AuthButtons } from "@/components/authenticationButton";
+// import { AppSidebar } from "@/components/app-sidebar"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,23 +26,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <div style={{
-        backgroundColor: "red",
-        height: "10vh",
-        position: "relative",
-      }}>
-      </div>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{
-          backgroundColor: "transparent",
-          zIndex: 10,
-          position: "relative",
-        }}
-      >
-        {children}
+      <body>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarTrigger style={{ height: "60px", width: "60px"}} />
+            <Providers>
+              <div
+                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                style={{
+                  backgroundColor: "transparent",
+                  zIndex: 10,
+                  position: "relative",
+                  alignItems: "stretch",
+                }}
+                >
+                <AuthButtons />
+                {children}
+              </div>
+            </Providers>
+          </SidebarProvider>
       </body>
     </html>
   );
